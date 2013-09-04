@@ -22,8 +22,13 @@ $site_url = $sugar_config['site_url'];
 $exclude_task = $_REQUEST['exclude_task'];
 if(strlen($exclude_task)>36 || strlen(trim($exclude_task))==0) $exclude_task = 0;
 
+
 $sql = "
-    SELECT t.id,t.name,t.description,DATE_FORMAT(t.date_start,'%H:%i') AS d_time,DATE_FORMAT(t.date_start,'%d.%m.%Y') AS d_date,t.assigned_user_id \n
+    SELECT t.id,t.name,
+           t.description,
+           DATE_FORMAT(CONVERT_TZ(t.date_start,'+00:00','+04:00'),'%H:%i') AS d_time,
+           DATE_FORMAT(CONVERT_TZ(t.date_start,'+00:00','+04:00'),'%d.%m.%Y') AS d_date,
+           t.assigned_user_id 
     FROM tasks t
     WHERE t.assigned_user_id = '{$user_id}'
       AND t.status = 'Not Started'
@@ -33,7 +38,7 @@ $sql = "
 if($exclude_task){
     $sql .= "\n  AND t.id !='{$exclude_task}' ";
 }
-$sql .= "\nORDER BY t.date_start DESC";
+$sql .= "\nORDER BY t.date_start";
 
 $results = $db->query($sql);
 

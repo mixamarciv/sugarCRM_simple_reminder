@@ -57,7 +57,7 @@ if($load_reminder){
     
     $xtpl->parse('main');
     //$xtpl->out('main');
-    echo $xtpl->text();
+    echo $xtpl->text('main');
 
 }
 
