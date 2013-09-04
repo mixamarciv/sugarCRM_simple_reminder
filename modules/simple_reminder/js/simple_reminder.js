@@ -1,9 +1,9 @@
-/*********************************************************************************
+п»ї/*********************************************************************************
 * js scripts for simple_reminder sugarCRM
 ********************************************************************************/
 
 
-//создает копию объекта
+//СЃРѕР·РґР°РµС‚ РєРѕРїРёСЋ РѕР±СЉРµРєС‚Р°
 function clone(o) {
     if(!o || typeof o!=='object'){
       return o;
@@ -23,33 +23,33 @@ function clone(o) {
    return c;
 }
 
-//send_ajax_query_timeout - функция для отправки аякс запроса с очередью в случае длительного выполнения,
-//после отправки запроса, в случае если запрос с тем же id_user_query уже выполняется в текущий момент то новый ставится в очередь
-//если в процессе выполнения запроса в очередь было отправлено более одного запроса то из очереди выполнится только последний!!
-// id_user_query - уникальный id ajax запроса
-// options - ajax параметры запроса
-// timeout - время задержки перед отправкой первого запроса и след. запроса из очереди после получения результата от первого
+//send_ajax_query_timeout - С„СѓРЅРєС†РёСЏ РґР»СЏ РѕС‚РїСЂР°РІРєРё Р°СЏРєСЃ Р·Р°РїСЂРѕСЃР° СЃ РѕС‡РµСЂРµРґСЊСЋ РІ СЃР»СѓС‡Р°Рµ РґР»РёС‚РµР»СЊРЅРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ,
+//РїРѕСЃР»Рµ РѕС‚РїСЂР°РІРєРё Р·Р°РїСЂРѕСЃР°, РІ СЃР»СѓС‡Р°Рµ РµСЃР»Рё Р·Р°РїСЂРѕСЃ СЃ С‚РµРј Р¶Рµ id_user_query СѓР¶Рµ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РІ С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚ С‚Рѕ РЅРѕРІС‹Р№ СЃС‚Р°РІРёС‚СЃСЏ РІ РѕС‡РµСЂРµРґСЊ
+//РµСЃР»Рё РІ РїСЂРѕС†РµСЃСЃРµ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР° РІ РѕС‡РµСЂРµРґСЊ Р±С‹Р»Рѕ РѕС‚РїСЂР°РІР»РµРЅРѕ Р±РѕР»РµРµ РѕРґРЅРѕРіРѕ Р·Р°РїСЂРѕСЃР° С‚Рѕ РёР· РѕС‡РµСЂРµРґРё РІС‹РїРѕР»РЅРёС‚СЃСЏ С‚РѕР»СЊРєРѕ РїРѕСЃР»РµРґРЅРёР№!!
+// id_user_query - СѓРЅРёРєР°Р»СЊРЅС‹Р№ id ajax Р·Р°РїСЂРѕСЃР°
+// options - ajax РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+// timeout - РІСЂРµРјСЏ Р·Р°РґРµСЂР¶РєРё РїРµСЂРµРґ РѕС‚РїСЂР°РІРєРѕР№ РїРµСЂРІРѕРіРѕ Р·Р°РїСЂРѕСЃР° Рё СЃР»РµРґ. Р·Р°РїСЂРѕСЃР° РёР· РѕС‡РµСЂРµРґРё РїРѕСЃР»Рµ РїРѕР»СѓС‡РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕС‚ РїРµСЂРІРѕРіРѕ
 /**************************
 example:
   var ajax_options = {
         type: "GET",
         url: "index.php",
         data: data,
-	onSend: function(){ //срабатывает при каждом вызове независимо от того был получен результат от прошлого запроса или нет
+	onSend: function(){ //СЃСЂР°Р±Р°С‚С‹РІР°РµС‚ РїСЂРё РєР°Р¶РґРѕРј РІС‹Р·РѕРІРµ РЅРµР·Р°РІРёСЃРёРјРѕ РѕС‚ С‚РѕРіРѕ Р±С‹Р» РїРѕР»СѓС‡РµРЅ СЂРµР·СѓР»СЊС‚Р°С‚ РѕС‚ РїСЂРѕС€Р»РѕРіРѕ Р·Р°РїСЂРѕСЃР° РёР»Рё РЅРµС‚
 	    if(typeof window['query_data'][id_user_query]['send_count'] == 'undefined'){window['query_data'][id_user_query]['send_count']=0;}
 	    window['query_data'][id_user_query]['send_count']++;
-	    log.msg("отправлен "+window['query_data'][id_user_query]['send_count']+" запрос");
+	    log.msg("РѕС‚РїСЂР°РІР»РµРЅ "+window['query_data'][id_user_query]['send_count']+" Р·Р°РїСЂРѕСЃ");
 	},
-	onWait: function(){ //срабатывает только при поставновке нового запроса в очередь
-	    log.msg("ждите.., ваш запрос отправлен в очередь");
+	onWait: function(){ //СЃСЂР°Р±Р°С‚С‹РІР°РµС‚ С‚РѕР»СЊРєРѕ РїСЂРё РїРѕСЃС‚Р°РІРЅРѕРІРєРµ РЅРѕРІРѕРіРѕ Р·Р°РїСЂРѕСЃР° РІ РѕС‡РµСЂРµРґСЊ
+	    log.msg("Р¶РґРёС‚Рµ.., РІР°С€ Р·Р°РїСЂРѕСЃ РѕС‚РїСЂР°РІР»РµРЅ РІ РѕС‡РµСЂРµРґСЊ");
 	},
         beforeSend: function(html){
 	  if(window['query_data'][id_user_query]['query_status']['load_count']>1) set_cur_size_input_items(id_user_query);
         },
-        success: function(html,textStatus,jqXHR){ // после получения результатов выводим список
+        success: function(html,textStatus,jqXHR){ // РїРѕСЃР»Рµ РїРѕР»СѓС‡РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє
 	    if(typeof window['query_data'][id_user_query]['result_count'] == 'undefined'){window['query_data'][id_user_query]['result_count']=0;}
 	    window['query_data'][id_user_query]['result_count']++;
-	    log.msg("получен результат "+window['query_data'][id_user_query]['result_count']+" запроса (из "+window['query_data'][id_user_query]['send_count']+")");
+	    log.msg("РїРѕР»СѓС‡РµРЅ СЂРµР·СѓР»СЊС‚Р°С‚ "+window['query_data'][id_user_query]['result_count']+" Р·Р°РїСЂРѕСЃР° (РёР· "+window['query_data'][id_user_query]['send_count']+")");
 	    
 	    $("#test").html(html);
         },
@@ -63,7 +63,7 @@ function send_ajax_query_timeout(id_user_query,options,timeout){
   }
   
   if(typeof options == 'undefined'){
-    alert("незадан параметр 'options' для 'send_ajax_query_timeout(id_user_query,options,timeout)' !");
+    alert("РЅРµР·Р°РґР°РЅ РїР°СЂР°РјРµС‚СЂ 'options' РґР»СЏ 'send_ajax_query_timeout(id_user_query,options,timeout)' !");
     return 0;
   }
   
@@ -100,7 +100,7 @@ function send_ajax_query_timeout(id_user_query,options,timeout){
   setTimeout(function(){
     var options_new = clone(window['ajax_query'][id_user_query]['options']);
     if(typeof options_new['complete'] !== 'undefined'){ // && jQuery.isFunction(options['complete'])
-        //alert("ВНИМАНИЕ: AJAX параметр options['complete'] будет проигнорирован!");
+        //alert("Р’РќРРњРђРќРР•: AJAX РїР°СЂР°РјРµС‚СЂ options['complete'] Р±СѓРґРµС‚ РїСЂРѕРёРіРЅРѕСЂРёСЂРѕРІР°РЅ!");
 	window['ajax_query'][id_user_query]['options']['my_ajax_on_complete'] = options_new['complete'];
 
 	options['complete'] = null;
@@ -114,9 +114,9 @@ function send_ajax_query_timeout(id_user_query,options,timeout){
 		var msg = status+" : ["+jqXHR['status']+"] "+jqXHR['statusText'];
 		if(is_object(window['log'])){
 		    log.show();
-		    log.msg("ОШИБКА AJAX загрузки:<br>"+msg+"<br>url:"+options_new['url']+"<br>data:"+var_dump(options_new['data'],null,null,"<br>"));//выводим информацию о неудачной загрузке данных
+		    log.msg("РћРЁРР‘РљРђ AJAX Р·Р°РіСЂСѓР·РєРё:<br>"+msg+"<br>url:"+options_new['url']+"<br>data:"+var_dump(options_new['data'],null,null,"<br>"));//РІС‹РІРѕРґРёРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РЅРµСѓРґР°С‡РЅРѕР№ Р·Р°РіСЂСѓР·РєРµ РґР°РЅРЅС‹С…
 		}else{
-		    alert("ОШИБКА AJAX загрузки: \n"+msg+"\nurl:"+options_new['url']+"\ndata:"+var_dump(options_new['data']));
+		    alert("РћРЁРР‘РљРђ AJAX Р·Р°РіСЂСѓР·РєРё: \n"+msg+"\nurl:"+options_new['url']+"\ndata:"+var_dump(options_new['data']));
 		}
 	    }
 	    var s = window['ajax_query'][id_user_query];
@@ -135,24 +135,24 @@ function send_ajax_query_timeout(id_user_query,options,timeout){
   return 1;
 }
 
-//запуск напоминаний
-//параметры:
-// options.ajax_url - путь к запуску index_ajax.php
-// options.user_id - id текущего пользователя
-// options.delay - время обновления
+//Р·Р°РїСѓСЃРє РЅР°РїРѕРјРёРЅР°РЅРёР№
+//РїР°СЂР°РјРµС‚СЂС‹:
+// options.ajax_url - РїСѓС‚СЊ Рє Р·Р°РїСѓСЃРєСѓ index_ajax.php
+// options.user_id - id С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+// options.delay - РІСЂРµРјСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
 function start_simple_reminder(options){
   var data = {};
   data.user_id = options.user_id;
   data.loaded = 0;
   data.exclude_task = options.exclude_task;
   
-  if(options.delay===undefined) options.delay = 60*1000; //60 сек
+  if(options.delay===undefined) options.delay = 60*1000; //60 СЃРµРє
   
   var ajax_options = {
         type: "GET",
         url: options.ajax_url,
         data: data,
-        success: function(html,textStatus,jqXHR){ // после получения результатов выводим список (новый список, и удаляем старый)
+        success: function(html,textStatus,jqXHR){ // РїРѕСЃР»Рµ РїРѕР»СѓС‡РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє (РЅРѕРІС‹Р№ СЃРїРёСЃРѕРє, Рё СѓРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Р№)
             data.loaded = 1;
             var obj = $("#simple_reminder");
 	    obj.html(html);

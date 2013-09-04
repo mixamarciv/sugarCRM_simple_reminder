@@ -1,5 +1,5 @@
-<?php
-//êëàññ äëÿ çàïóñêà ìîäóëÿ ïî õóêó
+ï»¿<?php
+//ÐºÐ»Ð°ÑÑ Ð´Ð»Ñ Ð·Ð°Ð¿ÑƒÑÐºÐ° Ð¼Ð¾Ð´ÑƒÐ»Ñ Ð¿Ð¾ Ñ…ÑƒÐºÑƒ
 class simple_reminder {
     function show($event, $arguments){
         require_once('modules/simple_reminder/simple_reminder.php');

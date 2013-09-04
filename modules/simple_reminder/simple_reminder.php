@@ -1,5 +1,6 @@
-<?php
-//
+ï»¿<?php
+//Ñ„Ð°Ð¹Ð» Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð¸ Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð±Ð»Ð¾ÐºÐ° Ð´Ð»Ñ ajax Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ ÑÐ¿Ð¸ÑÐºÐ° Ð½Ð°Ð¿Ð¾Ð¼Ð¸Ð½Ð°Ð½Ð¸Ð¹
+ 
 $load_reminder = 1; //flag for load & show reminder
 
 $user_id = @$_SESSION['authenticated_user_id'];
@@ -7,7 +8,7 @@ if($user_id==null || trim($user_id)==""){
     $load_reminder = 0;
 }
 
-//ïðîâåðÿåì ìîæíî ëè îòîáðàæàòü íà ñòðàíèöå íàïîìèíàíèå
+//Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ Ð¼Ð¾Ð¶Ð½Ð¾ Ð»Ð¸ Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶Ð°Ñ‚ÑŒ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ðµ Ð½Ð°Ð¿Ð¾Ð¼Ð¸Ð½Ð°Ð½Ð¸Ðµ
 if(isset($_REQUEST['ajax_load']) ||
    isset($_REQUEST['sugar_body_only']) ||
    isset($_REQUEST['to_pdf']) ||
@@ -18,13 +19,13 @@ if(isset($_REQUEST['ajax_load']) ||
 }
 
 
-//èñêëþ÷àåì èç íàïîìèíàíèé çàïèñè êîòîðûå óæå ðåäàêòèðóåì íà ñòðàíèöå
+//Ð¸ÑÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ Ð¸Ð· Ð½Ð°Ð¿Ð¾Ð¼Ð¸Ð½Ð°Ð½Ð¸Ð¹ Ð·Ð°Ð¿Ð¸ÑÐ¸ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ ÑƒÐ¶Ðµ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€ÑƒÐµÐ¼ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ðµ
 $exclude_task = "";
 $this_url = $_SERVER['REQUEST_URI'];
 if(preg_match("#module.{1,3}Tasks#i",$this_url) && preg_match("#action.{1,3}DetailView#i",$this_url)){
   $matches = null;
   if(preg_match("#[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}#", $this_url, $matches)){
-      //ïðèìåðû id:
+      //Ð¿Ñ€Ð¸Ð¼ÐµÑ€Ñ‹ id:
       //    41f958d2-98b2-f450-311d-5227281640f1
       //    2b2d947f-c57d-f22e-c4a0-52272ad357c9
       $exclude_task = $matches[0];
@@ -33,12 +34,12 @@ if(preg_match("#module.{1,3}Tasks#i",$this_url) && preg_match("#action.{1,3}Deta
 
 
 if($load_reminder){
-    //âûâîäèì áëîê äëÿ çàãðóçêè ajax íàïîìèíàíèé
+    //Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ Ð±Ð»Ð¾Ðº Ð´Ð»Ñ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ ajax Ð½Ð°Ð¿Ð¾Ð¼Ð¸Ð½Ð°Ð½Ð¸Ð¹
     //global $current_user;
     global $sugar_config;
 
     $sr_config = array();
-    $sr_config['send_query_interval'] = 60*1000; //âðåìÿ(ìñ) ÷åðåç êîòîðîå ïîñûëàåòñÿ ñëåäóþùèé çàïðîñ
+    $sr_config['send_query_interval'] = 60*1000; //Ð²Ñ€ÐµÐ¼Ñ(Ð¼Ñ) Ñ‡ÐµÑ€ÐµÐ· ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ðµ Ð¿Ð¾ÑÑ‹Ð»Ð°ÐµÑ‚ÑÑ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ Ð·Ð°Ð¿Ñ€Ð¾Ñ
     
    
     $xtpl=new XTemplate(dirname(__FILE__)."/simple_reminder.html");

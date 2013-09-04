@@ -1,7 +1,7 @@
-<?php
+п»ї<?php
 
-echo "модуль simple_reminder <br>";
-echo "автор <a href=\"miffka.com\">Михаил Николаевич Марцив</a> mixamarciv@gmail.com<br>";
+echo "РјРѕРґСѓР»СЊ simple_reminder <br>";
+echo "Р°РІС‚РѕСЂ <a href=\"miffka.com\">РњРёС…Р°РёР» РќРёРєРѕР»Р°РµРІРёС‡ РњР°СЂС†РёРІ</a> mixamarciv@gmail.com<br>";
 
 
 

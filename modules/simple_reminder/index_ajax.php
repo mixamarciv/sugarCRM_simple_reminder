@@ -1,8 +1,8 @@
-<?php
-//аякс загруска списка напоминаний
-//выдает записи в виде <a id_task={$id} href=\"ссылка на задачу\" class=res><name>название</name><time>время</time><desc>описание</desc></a> 
+п»ї<?php
+//Р°СЏРєСЃ Р·Р°РіСЂСѓСЃРєР° СЃРїРёСЃРєР° РЅР°РїРѕРјРёРЅР°РЅРёР№
+//РІС‹РґР°РµС‚ Р·Р°РїРёСЃРё РІ РІРёРґРµ <a id_task={$id} href=\"СЃСЃС‹Р»РєР° РЅР° Р·Р°РґР°С‡Сѓ\" class=res><name>РЅР°Р·РІР°РЅРёРµ</name><time>РІСЂРµРјСЏ</time><desc>РѕРїРёСЃР°РЅРёРµ</desc></a> 
 
-session_start();
+//session_start();
 
 $user_id = @$_SESSION['authenticated_user_id'];
 if($user_id==null || trim($user_id)=="" || strlen($user_id)>36){
