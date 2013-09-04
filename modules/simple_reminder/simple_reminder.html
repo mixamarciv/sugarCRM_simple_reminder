@@ -1,0 +1,18 @@
+﻿<!-- BEGIN: main -->
+<link rel="stylesheet" type="text/css" href="modules/simple_reminder/css/style.css" />
+{INCLUDE_JQUERY}
+<script type="text/javascript" src="modules/simple_reminder/js/simple_reminder.js" ></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  var options = {};
+  options.delay    = {SEND_QUERY_INTERVAL}; //задержка перед повторной отправкой запроса 
+  options.ajax_url = "{SITE_URL}/index.php?to_pdf=true&module=simple_reminder&action=index_ajax"; //http://site7.test/?to_pdf=true&module=simple_reminder&action=index_ajax
+  options.user_id  = "{USER_ID}";
+  options.exclude_task = "{EXCLUDE_TASK}"; 
+  start_simple_reminder(options);
+});
+</script>
+
+<div id="simple_reminder" ></div>
+<!-- END: main -->

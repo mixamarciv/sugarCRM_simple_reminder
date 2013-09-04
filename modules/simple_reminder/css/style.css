@@ -1,0 +1,68 @@
+/*********************************************************************************
+* css styles for simple_reminder sugarCRM
+********************************************************************************/
+#simple_reminder{
+    display: block;
+    position: fixed;
+    z-index: 1801;
+    float: left;
+    top: 0px;
+    right: 0px;
+    padding: 0px;
+}
+
+#simple_reminder .res {
+    display: none;
+    text-decoration: none;
+    color: #fff;
+    font-size: x-large;
+    border: 2px solid #240b3e;
+    border-radius: 10px;
+    background: #651eac;
+    opacity:0.7;
+    filter:alpha(opacity=70); /* For IE8 and earlier */
+    
+    float: left;
+    
+    padding: 10px;
+    margin: 10px;
+    max-width: 500px;
+}
+
+#simple_reminder .res:hover {
+    opacity:0.8;
+    filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+#simple_reminder .res name{
+    float: left;
+    font-size: xx-large;
+    padding-right: 50px;
+    max-width: 300px;
+}
+
+#simple_reminder .res time{
+    float: right;
+    font-size: large;
+    text-align: right;
+}
+
+#simple_reminder .res time d_date{
+    display: block;
+}
+
+#simple_reminder .res time d_time{
+    font-size: xx-large;
+    border: 1px solid #d1b0f2;
+    border-radius: 5px;
+}
+#simple_reminder .res desc:before {
+    content: "";
+    /*display: block;*/
+    clear: left;
+}
+#simple_reminder .res desc {
+    max-width: 400px;
+    font-size: large;
+    float: left;
+}
